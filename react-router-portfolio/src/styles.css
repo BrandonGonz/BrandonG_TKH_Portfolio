@@ -1,0 +1,182 @@
+/* =========================
+   Base: variables & resets
+   ========================= */
+   :root {
+    --accent: #2563eb;
+    --bg: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-shadow: 0 8px 20px rgba(0,0,0,.04);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0f19;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card-shadow: 0 10px 24px rgba(0,0,0,.35);
+    }
+  }
+  
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  }
+  
+  /* =========================
+     Layout & nav
+     ========================= */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  header {
+    position: sticky; top: 0;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    -webkit-backdrop-filter: saturate(1.2) blur(6px);
+    backdrop-filter: saturate(1.2) blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { font-weight: 700; display: flex; gap: 8px; align-items: center; }
+  main { padding: 28px 0 56px; }
+  footer { border-top: 1px solid var(--border); padding: 16px 0; color: var(--muted); }
+  
+  /* =========================
+     Navigation links
+     ========================= */
+  .navlinks { display: flex; gap: 14px; align-items: center; }
+  .navlinks a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: background .15s ease, color .15s ease, transform .05s ease;
+  }
+  .navlinks a:hover { background: color-mix(in oklab, var(--accent) 12%, transparent); }
+  .navlinks a.active { color: #fff; background: var(--accent); transform: translateY(-1px); }
+  
+  /* =========================
+     Cards, buttons, helpers
+     ========================= */
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+    background: var(--bg);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  }
+  .btn:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.block { width: 100%; justify-content: center; }
+  
+  .pill {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .muted { color: var(--muted); }
+  
+  /* =========================
+     Grid / Flex helpers
+     ========================= */
+  .grid { 
+    display: grid; 
+    gap: 18px; 
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  
+  @media (max-width: 640px) {
+    .navlinks { overflow: auto; }
+  }
+  
+  /* =========================
+     Forms
+     ========================= */
+  .form { display: grid; gap: 12px; }
+  .field { display: grid; gap: 6px; }
+  label { font-size: 14px; color: var(--muted); }
+  input, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  input:focus, textarea:focus {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+  .alert {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .alert.success { background: color-mix(in oklab, #10b981 18%, transparent); color: #065f46; border: 1px solid #10b98120; }
+  .alert.error { background: color-mix(in oklab, #ef4444 18%, transparent); color: #7f1d1d; border: 1px solid #ef444420; }
+  
+  /* =========================
+     Contact page extras
+     ========================= */
+  .contact-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1.2fr .8fr;
+  }
+  @media (max-width: 900px){
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  .form-card .card-header {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, transparent), transparent);
+    border-radius: 12px 12px 0 0;
+  }
+  .row-2 {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 640px){
+    .row-2 { grid-template-columns: 1fr; }
+  }
+  .help {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .spinner {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    display: inline-block;
+    margin-right: 8px;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
